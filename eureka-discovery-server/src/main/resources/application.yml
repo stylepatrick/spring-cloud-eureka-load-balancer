@@ -1,0 +1,21 @@
+# This default profile is used when running a single instance completely standalone:
+spring:
+  security:
+    user:
+      name: admin
+      password: password
+  config:
+    activate:
+      on-profile: default
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    renewal-percent-threshold: 0.49

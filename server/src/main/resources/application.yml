@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: server
+  security:
+    user:
+      name: server
+      password: pass
+server:
+  port: 71
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      # If you have more eureka replicas add them here seperated by ,
+      defaultZone: http://admin:password@localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, info, health
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: '@project.name@'
+    version: '@project.version@'
+    spring-cloud-version: '@spring-cloud.version@'

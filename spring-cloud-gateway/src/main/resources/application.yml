@@ -1,0 +1,39 @@
+server:
+  port: 8282
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      # If you have more eureka replicas add them here seperated by ,
+      defaultZone: http://admin:password@localhost:8761/eureka
+
+spring:
+  application:
+    name: gateway-service # gateway service name to be called by it clients
+  cloud:
+    gateway:
+      routes:
+        - id: server
+          uri: lb://server
+          predicates:
+            - Path=/api/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: '@project.name@'
+    version: '@project.version@'
+    spring-cloud-version: '@spring-cloud.version@'

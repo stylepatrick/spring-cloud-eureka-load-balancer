@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: gateway-client
+  security:
+    user:
+      name: client
+      password: pwd
+
+server:
+  port: 8081
+
+serverApi:
+  gatewayUrl: http://localhost:8282/api
+  username: server
+  password: pass
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: metrics, info, health
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: '@project.name@'
+    version: '@project.version@'
+    spring-cloud-version: '@spring-cloud.version@'
